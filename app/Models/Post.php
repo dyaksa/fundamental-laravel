@@ -11,6 +11,12 @@ class Post extends Model
 
     protected $table = "posts";
 
+    //digunakan ketika inputan itu bersifat public
+    protected $fillable = ['title', 'slug', 'body'];
+
+    //digunakan ketika inputan bersifat pribadi
+    protected $guarded = [];
+
     //make own function in model
     public function scopeLatestPost()
     {
