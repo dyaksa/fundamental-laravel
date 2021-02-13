@@ -35,6 +35,7 @@ class PostController extends Controller
 
         $attr['slug'] = Str::slug(request('title'));
         Post::create($attr);
-        return back();
+        request()->session()->flash('success', 'success created post');
+        return redirect("/post");
     }
 }
