@@ -28,12 +28,9 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->slug = Str::slug($request->title);
-        $post->body = $request->body;
-
-        $post->save();
+        $postInput = $request->all();
+        $postInput['slug'] = Str::slug($request->title);
+        Post::create($postInput);
         return back();
     }
 }
