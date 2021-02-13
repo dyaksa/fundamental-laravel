@@ -1,12 +1,19 @@
-@extends('layouts.app')
-
-@section('title','Post')
+@extends('layouts.app', ["title" => "Post Page"])
 
 @section('content')
 <div class="container">
+    <div class="d-flex justify-content-between mb-4">
+        @if($posts->count())
+        <h1>All Post</h1>
+        @endif
+        <div>
+            <a href="/post/create" class="btn btn-primary btn-lg">Create Post</a>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-md-6">
-            @foreach($posts as $post)
+        @if($posts->count())
+        @foreach($posts as $post)
+        <div class="col-md-4">
             <div class="card mt-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
@@ -17,11 +24,16 @@
                     Publish on {{ $post->created_at->diffForHumans() }}
                 </div>
             </div>
-            @endforeach
-            <div class="mt-3">
-                {{ $posts->links() }}
-            </div>
         </div>
+        @endforeach
+        <div class="mt-5 d-flex justify-content-center">
+            {{ $posts->links() }}
+        </div>
+        @else
+        <div class="alert alert-info">
+            Nothing Post Article
+        </div>
+        @endif
     </div>
 </div>
 @endsection
