@@ -3,7 +3,9 @@
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between mb-4">
-        @if($posts->count())
+        @if(isset($category))
+        <h1>Category : {{ $category }}</h1>
+        @else
         <h1>All Post</h1>
         @endif
         <div>

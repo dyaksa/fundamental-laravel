@@ -7,7 +7,7 @@
     <div class="row">
         <h1>{{ $post->title }}</h1>
         <div class="text-secondary">
-            <small> {{ $post->category->title }} , Published on : {{ $post->created_at->format('D M, Y') }} </small>
+            <small><a href="/category/{{ $post->category->slug }}"> {{ $post->category->title }}</a> , Published on : {{ $post->created_at->format('D M, Y') }} </small>
         </div>
         <hr>
         <p>
