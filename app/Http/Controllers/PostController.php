@@ -23,7 +23,10 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create', ['post' => new Post()]);
+        return view('posts.create', [
+            'post' => new Post(),
+            "submit" => "Publish"
+        ]);
     }
 
     public function store(PostRequest $request)
@@ -46,5 +49,12 @@ class PostController extends Controller
         $post->update($attr);
         request()->session()->flash('success', 'success update post');
         return redirect('/post');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        request()->session()->flash("success", 'successfull delete post');
+        return redirect("/post");
     }
 }

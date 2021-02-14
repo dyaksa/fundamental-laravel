@@ -16,4 +16,4 @@
     </div>
     @enderror
 </div>
-<button class="btn btn-primary btn-lg">Update</button>
+<button class="btn btn-primary btn-lg">{{ $submit ?? 'Update' }}</button>

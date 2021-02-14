@@ -18,9 +18,7 @@
         @include('alert')
         @yield('content')
     </main>
-    <footer>
-    </footer>
-    @yield('script')
+    <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>
