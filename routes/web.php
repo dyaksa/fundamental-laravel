@@ -12,6 +12,7 @@ Route::post("/post/create", [PostController::class, 'store']);
 Route::get("/post/{post:slug}/edit", [PostController::class, 'edit']);
 Route::patch("/post/{post:slug}/edit", [PostController::class, 'update']);
 Route::get("/post/{post:slug}", [PostController::class, "show"]);
+Route::delete("/post/{post:slug}/delete", [PostController::class, 'destroy']);
 
 Route::view("/contact", "contact");
 Route::view("/about", "about");
