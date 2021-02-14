@@ -5,7 +5,11 @@
     <div class="d-flex justify-content-between mb-4">
         @if(isset($category))
         <h1>Category : {{ $category }}</h1>
-        @else
+        @endif
+        @if(isset($tag))
+        <h1>Tag : {{ $tag->title }}</h1>
+        @endif
+        @if(!isset($category) && !isset($tag))
         <h1>All Post</h1>
         @endif
         <div>
