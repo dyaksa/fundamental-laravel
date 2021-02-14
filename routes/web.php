@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 Route::get("/", HomeController::class);
 
@@ -13,6 +14,8 @@ Route::get("/post/{post:slug}/edit", [PostController::class, 'edit']);
 Route::patch("/post/{post:slug}/edit", [PostController::class, 'update']);
 Route::get("/post/{post:slug}", [PostController::class, "show"]);
 Route::delete("/post/{post:slug}/delete", [PostController::class, 'destroy']);
+
+Route::get("/category/{category:slug}", [CategoryController::class, 'show']);
 
 Route::view("/contact", "contact");
 Route::view("/about", "about");

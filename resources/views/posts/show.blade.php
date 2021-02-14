@@ -6,6 +6,10 @@
 <div class="container">
     <div class="row">
         <h1>{{ $post->title }}</h1>
+        <div class="text-secondary">
+            <small><a href="/category/{{ $post->category->slug }}"> {{ $post->category->title }}</a> , Published on : {{ $post->created_at->format('D M, Y') }} </small>
+        </div>
+        <hr>
         <p>
             {{ $post->body }}
         </p>
