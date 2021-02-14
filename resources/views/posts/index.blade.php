@@ -20,8 +20,9 @@
                     <p class="card-text">{{ Str::limit($post->body, 100, '.') }}</p>
                     <a class="card-link" href='/post/{{ $post->slug }}'>Read more</a>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-between">
                     Publish on {{ $post->created_at->diffForHumans() }}
+                    <a href="/post/{{ $post->slug }}/edit" class="btn btn-success btn-sm">Edit</a>
                 </div>
             </div>
         </div>

@@ -38,4 +38,20 @@ class PostController extends Controller
         request()->session()->flash('success', 'success created post');
         return redirect("/post");
     }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(Post $post)
+    {
+        $attr = request()->validate([
+            'title' => 'required|min:3|max:20',
+            'body' => 'required'
+        ]);
+        $post->update($attr);
+        request()->session()->flash('success', 'success update post');
+        return redirect('/post');
+    }
 }
