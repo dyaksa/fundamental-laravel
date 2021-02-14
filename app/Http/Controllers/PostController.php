@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -23,16 +23,12 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['post' => new Post()]);
     }
 
-    public function store()
+    public function store(PostRequest $request)
     {
-        $attr = request()->validate([
-            'title' => 'required|min:3|max:20',
-            'body' => 'required'
-        ]);
-
+        $attr = $request->all();
         $attr['slug'] = Str::slug(request('title'));
         Post::create($attr);
         request()->session()->flash('success', 'success created post');
@@ -44,12 +40,9 @@ class PostController extends Controller
         return view('posts.edit', ['post' => $post]);
     }
 
-    public function update(Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $attr = request()->validate([
-            'title' => 'required|min:3|max:20',
-            'body' => 'required'
-        ]);
+        $attr = $request->all();
         $post->update($attr);
         request()->session()->flash('success', 'success update post');
         return redirect('/post');
