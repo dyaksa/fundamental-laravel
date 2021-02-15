@@ -14,7 +14,7 @@ class Post extends Model
     protected $table = "posts";
 
     //digunakan ketika inputan itu bersifat public
-    protected $fillable = ['title', 'slug', 'body'];
+    protected $fillable = ['title', 'slug', 'body', 'category_id'];
 
     //digunakan ketika inputan bersifat pribadi
     protected $guarded = [];
