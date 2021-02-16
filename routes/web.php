@@ -7,13 +7,16 @@ use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get("/post", [PostController::class, 'index'])->name("posts.index");
-Route::get("/post/create", [PostController::class, "create"])->name("posts.create")->middleware("auth");
-Route::post("/post/create", [PostController::class, 'store'])->middleware("auth");
-Route::get("/post/{post:slug}/edit", [PostController::class, 'edit'])->middleware("auth");
-Route::patch("/post/{post:slug}/edit", [PostController::class, 'update'])->middleware("auth");
-Route::get("/post/{post:slug}", [PostController::class, "show"]);
-Route::delete("/post/{post:slug}/delete", [PostController::class, 'destroy'])->middleware("auth");
 
+Route::middleware('auth')->prefix("post")->group(function () {
+    Route::get("create", [PostController::class, "create"])->name("posts.create");
+    Route::post("create", [PostController::class, 'store']);
+    Route::get("{post:slug}/edit", [PostController::class, 'edit']);
+    Route::patch("{post:slug}/edit", [PostController::class, 'update']);
+    Route::delete("{post:slug}/delete", [PostController::class, 'destroy']);
+});
+
+Route::get("/post/{post:slug}", [PostController::class, "show"]);
 Route::get("/category/{category:slug}", [CategoryController::class, 'show']);
 Route::get("/tag/{tag:slug}", [TagController::class, 'index']);
 

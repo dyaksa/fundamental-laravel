@@ -21,13 +21,14 @@
         <p>
             {{ $post->body }}
         </p>
+        @auth
         <div>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 Delete
             </button>
         </div>
-
+        @endauth
         <!-- Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
